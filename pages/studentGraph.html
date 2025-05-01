@@ -1,0 +1,52 @@
+<!-- Breadcrumb Navigation -->
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb bg-dark p-3 rounded">
+        <li class="breadcrumb-item"><a href="student.html" class="text-decoration-none text-light">Student Panel</a></li>
+        <li class="breadcrumb-item active text-light" aria-current="page">Student Graphs</li>
+    </ol>
+</nav>
+
+<div class="row mt-4">
+    <!-- Top 5 Enrolled Courses -->
+    <div class="col-md-6 mb-4">
+        <div class="bg-gray-800 p-4 rounded-2xl shadow">
+            <h2 class="text-xl font-semibold mb-2 text-white">Top 5 Enrolled Courses</h2>
+            <canvas id="topCoursesChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Enrollment Trends -->
+    <div class="col-md-6 mb-4">
+        <div class="bg-gray-800 p-4 rounded-2xl shadow">
+            <h2 class="text-xl font-semibold mb-2 text-white">Enrollment Trends</h2>
+            <canvas id="enrollmentTrendsChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Enrollments by Student -->
+    <div class="col-md-6 mb-4">
+        <div class="bg-gray-800 p-4 rounded-2xl shadow">
+            <h2 class="text-xl font-semibold mb-2 text-white">Enrollments by Student</h2>
+            <canvas id="enrollmentsByStudentChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Revenue from Enrollments -->
+    <div class="col-md-6 mb-4">
+        <div class="bg-gray-800 p-4 rounded-2xl shadow">
+            <h2 class="text-xl font-semibold mb-2 text-white">Revenue from Enrollments</h2>
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Instructor Course Count -->
+    <div class="col-md-6 mb-4">
+        <div class="bg-gray-800 p-4 rounded-2xl shadow">
+            <h2 class="text-xl font-semibold mb-2 text-white">Instructor Course Count</h2>
+            <canvas id="instructorCourseCountChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../bootstrap-5.3.5-dist/js/studentGraph.js"></script>

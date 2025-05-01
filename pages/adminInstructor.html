@@ -1,0 +1,63 @@
+<!-- <nav aria-label="breadcrumb">
+    <ol class="breadcrumb " data-bs-theme="light">
+        <li class="breadcrumb-item"><a href="../admin.html" style="text-decoration: none; color: aliceblue;">Admin Panel</a></li>
+        <li class="breadcrumb-item active text-light">Form</li>
+    </ol>
+</nav>
+
+<div class="p-4" style="flex: 1; border: 1px #5C5470 solid" id="main-content" >
+    <h2>Welcome to Admin Instructor Management</h2>
+    <p>This page is used by Admin to manage Instructors</p>
+</div> -->
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb" data-bs-theme="light">
+        <li class="breadcrumb-item"><a href="../admin.html" style="text-decoration: none; color: aliceblue;">Admin Panel</a></li>
+        <li class="breadcrumb-item active text-light">Instructor</li>
+    </ol>
+</nav>
+
+<div class="p-4" style="flex: 1; border: 1px #5C5470 solid" id="main-content">
+    <h2 class="text-light">Instructor Management</h2>
+    <p class="text-secondary">View and manage instructors associated with the platform.</p>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-dark table-bordered table-striped table-hover align-middle">
+            <thead class="table-secondary text-dark">
+                <tr>
+                    <th>Instructor ID</th>
+                    <th>Name</th>
+                    <th>Assigned Course</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example rows -->
+                <tr>
+                    <td>INST001</td>
+                    <td>Dr. Aarti Joshi</td>
+                    <td>Web Development</td>
+                    <td>
+                        <button class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>INST002</td>
+                    <td>Mr. Ravi Sharma</td>
+                    <td>Database Systems</td>
+                    <td>
+                        <button class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                <!-- More rows can be dynamically loaded -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-end">
+        <button class="btn btn-success mt-3"><i class="fa fa-plus"></i> Add New Instructor</button>
+    </div>
+</div>

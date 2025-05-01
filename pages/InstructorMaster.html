@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<div class="p-4" style="flex: 1; border: 1px #5C5470 solid;" id="main-content">
+    <h2 class="text-light mb-4">Instructor Management</h2>
+    <p class="text-secondary">Manage instructor records and expertise areas.</p>
+
+    <form id="instructorForm" class="mb-4">
+        <div class="mb-3">
+            <label for="name" class="form-label text-light">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Instructor Name">
+            <div class="invalid-feedback">At least 5 characters</div>
+        </div>
+        <div class="mb-3">
+            <label for="expertise" class="form-label text-light">Expertise:</label>
+            <input type="text" class="form-control" id="expertise" name="expertise" placeholder="Expertise">
+            <div class="invalid-feedback">Invalid input</div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit">Add Instructor</button>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped table-hover align-middle">
+            <thead class="table-secondary text-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Expertise</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="instructorTableBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="../bootstrap-5.3.5-dist/js/instructor.js"></script>

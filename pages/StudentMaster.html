@@ -1,0 +1,50 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+<div class="p-4" style="flex: 1; border: 1px #5C5470 solid;" id="main-content">
+    <h2 class="text-light mb-4">Student Management</h2>
+    <p class="text-secondary">View, update, or remove student records from the system.</p>
+
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped table-hover align-middle">
+            <thead class="table-secondary text-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="studentTableBody">
+                <!-- Rows will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="border-secondary" />
+
+    <div id="editStudentSection" class="mt-4" style="display: none;">
+        <h5 class="text-light">Edit Student</h5>
+        <form id="editStudentForm" class="row g-3">
+            <input type="hidden" id="editId" />
+            <div class="col-md-4">
+                <label for="editName" class="form-label text-light">Name:</label>
+                <input type="text" class="form-control" id="editName" required />
+            </div>
+            <div class="col-md-4">
+                <label for="editEmail" class="form-label text-light">Email:</label>
+                <input type="email" class="form-control" id="editEmail" required />
+            </div>
+            <div class="col-md-4">
+                <label for="editPhone" class="form-label text-light">Phone:</label>
+                <input type="text" class="form-control" id="editPhone" required />
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Update Student</button>
+                <!-- <button type="button" class="btn btn-secondary" onclick="cancelEdit()">Cancel</button> -->
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script src="../bootstrap-5.3.5-dist/js/student.js"></script>

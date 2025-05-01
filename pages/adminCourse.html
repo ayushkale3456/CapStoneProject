@@ -1,0 +1,63 @@
+<!-- <nav aria-label="breadcrumb">
+    <ol class="breadcrumb " data-bs-theme="light">
+        <li class="breadcrumb-item"><a href="../admin.html" style="text-decoration: none; color: aliceblue;">Admin Panel</a></li>
+        <li class="breadcrumb-item active text-light">Course</li>
+    </ol>
+</nav>
+
+<div class="p-4" style="flex: 1; border: 1px #5C5470 solid" id="main-content" >
+    <h2>Welcome to Admin Course Management Page</h2>
+    <p>This page is used by Admin to manage course.</p>
+</div> -->
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb" data-bs-theme="light">
+        <li class="breadcrumb-item"><a href="../admin.html" style="text-decoration: none; color: aliceblue;">Admin Panel</a></li>
+        <li class="breadcrumb-item active text-light">Course</li>
+    </ol>
+</nav>
+
+<div class="p-4" style="flex: 1; border: 1px #5C5470 solid" id="main-content">
+    <h2 class="text-light">Course Management</h2>
+    <p class="text-secondary">Manage all available courses here.</p>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-dark table-bordered table-striped table-hover align-middle">
+            <thead class="table-secondary text-dark">
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th>Instructor</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example data row -->
+                <tr>
+                    <td>101</td>
+                    <td>Introduction to Python</td>
+                    <td>Dr. Shalini Rao</td>
+                    <td>
+                        <button class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>102</td>
+                    <td>Data Structures</td>
+                    <td>Prof. Karan Mehta</td>
+                    <td>
+                        <button class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                <!-- Additional rows will be dynamically loaded from the DB -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-end">
+        <button class="btn btn-success mt-3"><i class="fa fa-plus"></i> Add New Course</button>
+    </div>
+</div>

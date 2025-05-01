@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In - CourseMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="../bootstrap-5.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap-5.3.5-dist/css/style.css">
+    <style>
+        body {
+            background-color: #1e1e2f;
+            color: white;
+        }
+
+        h3 {
+            color: #ffd369;
+        }
+
+        label {
+            color: #72648C;
+        }
+        .card {
+            background-color: #2c2c3e;
+            border: 1px solid #444;
+            border-radius: 15px;
+        }
+        .form-control {
+            background-color: #3c3c4e;
+            color: white;
+            border: 1px solid #5C5470;
+        }
+        .form-control:focus {
+            border-color: #72648C;
+            box-shadow: none;
+        }
+        .btn-custom {
+            background-color: #5C5470;
+            color: white;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #72648C;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="col-md-6">
+        <div class="card p-4 shadow">
+            <h3 class="text-center mb-4">Sign In to CourseMS</h3>
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label for="signinEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="signinEmail" placeholder="name@example.com" required>
+                </div>
+                <div class="mb-4">
+                    <label for="signinPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="signinPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-custom w-100">Sign In</button>
+                <p class="mt-3 text-center text-secondary">Don't have an account? <a href="signUp.html" class="text-info">Sign Up</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../bootstrap-5.3.5-dist/js/login.js"></script>
+</body>
+</html>

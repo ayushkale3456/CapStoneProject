@@ -1,0 +1,93 @@
+<!-- <nav aria-label="breadcrumb">
+    <ol class="breadcrumb " data-bs-theme="light">
+        <li class="breadcrumb-item"><a href="../student.html" style="text-decoration: none; color: aliceblue;">Student Panel</a></li>
+        <li class="breadcrumb-item active text-light">Form</li>
+    </ol>
+</nav>
+
+<div class="p-4" style="flex: 1; border: 1px #5C5470 solid" id="main-content" >
+    <h2>Welcome to Student Enrollement</h2>
+    <p>This is the form filling place.</p>
+</div> -->
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb " data-bs-theme="light">
+    <li class="breadcrumb-item">
+      <a href="../student.html" style="text-decoration: none; color: aliceblue;">Student Panel</a>
+    </li>
+    <li class="breadcrumb-item active text-light">Form</li>
+  </ol>
+</nav>
+
+<div class="p-4" style="flex: 1; border: 1px #5C5470 solid;" id="main-content">
+  <h2 class="mb-4">Course Enrollment Form</h2>
+
+  <form action="" method="POST" class="needs-validation" novalidate>
+    <!-- Student Name -->
+    <div class="mb-3">
+      <label for="studentName" class="form-label">Student Name</label>
+      <input type="text" class="form-control" id="studentName" name="student_name" required>
+      <div class="invalid-feedback">Please enter your name.</div>
+    </div>
+
+    <!-- Course Selection -->
+    <div class="mb-3">
+      <label for="courseSelect" class="form-label">Select Course</label>
+      <select class="form-select" id="courseSelect" name="course_id" required>
+        <option value="">-- Select Course --</option>
+        <option value="1">Python Basics</option>
+        <option value="2">Web Development</option>
+        <option value="3">Machine Learning</option>
+        <option value="4">Java Programming</option>
+        <option value="5">Data Science</option>
+        <option value="6">React JS</option>
+        <option value="7">Cloud Computing</option>
+        <option value="8">Cybersecurity</option>
+        <option value="9">SQL & Databases</option>
+        <option value="10">AI with Python</option>
+      </select>
+      <div class="invalid-feedback">Please select a course.</div>
+    </div>
+
+
+    <!-- Batch Timing -->
+    <!-- <div class="mb-3">
+        <label for="batchTime" class="form-label">Preferred Batch Time</label>
+        <select class="form-select" id="batchTime" name="batch_time" required>
+          <option value="">-- Select Time --</option>
+          <option value="Morning">Morning (9AM - 12PM)</option>
+          <option value="Afternoon">Afternoon (1PM - 4PM)</option>
+          <option value="Evening">Evening (5PM - 8PM)</option>
+        </select>
+        <div class="invalid-feedback">Please select a batch timing.</div>
+      </div> -->
+
+    <!-- Enrollment Date (auto filled) -->
+    <div class="mb-3">
+      <label for="enrollDate" class="form-label">Enrollment Date</label>
+      <input type="date" class="form-control" id="enrollDate" name="enroll_date" required>
+      <div class="invalid-feedback">Please select a date.</div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-light">Enroll Now</button>
+  </form>
+</div>
+
+<script>
+  // Bootstrap form validation
+  (() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+</script>

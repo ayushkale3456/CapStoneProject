@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard</title>
+    <link href="./bootstrap-5.3.5-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./bootstrap-5.3.5-dist/css/bootstrap.journal.min.css">
+    <link rel="stylesheet" href="./bootstrap-5.3.5-dist/css/style.css">
+</head>
+
+<body class="bg-dark">
+
+    <!-- Navbar 1-->
+    <nav class="navbar navbar-expand-lg bg-dark d-flex justify-content-between p-2" data-bs-theme="dark">
+        <a class="navbar-brand panel" style="color: rgb(185, 180, 199);" href="./student.html">Student Panel</a>
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true"
+                style="color: rgb(185, 180, 199);">Student</button>
+            <div class="dropdown-menu " aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="#" onclick="loadPage('studentProfile.html')">Profile</a>
+                <a class="dropdown-item" href="#" onclick="logout()">LogOut</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="bg-dark text-white sidebar p-3" style="width: 250px; min-height: 100vh;">
+            <h5 class=" mb-3" style="color: rgb(185, 180, 199);">Navigation</h5>
+            <ul class="nav flex-column">
+                <!-- <li class="nav-item">
+                    <a href="#" class="nav-link text-white" onclick="loadPage('studentDashboard.html')">
+                        <i class="fa fa-chart-line me-2"></i> Dashboard
+                    </a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#" onclick="loadPage('studentAvailableCourses.html')">
+                        <i class="fa-solid fa-book me-2"></i> Available Courses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#" onclick="loadPage('studentEnrollment.html')">
+                        <i class="fa-solid fa-graduation-cap me-2"></i> Enrolled Courses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#" onclick="loadPage('studentGraph.html')">
+                        <i class="fa-solid fa-chart-line me-2"></i> Graphs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white dropdown-toggle" data-bs-toggle="collapse" href="#menu3">
+                        <i class="fa fa-cog me-2"></i> Settings
+                    </a>
+                    <div class="collapse" id="menu3">
+                        <ul class="nav flex-column ms-3">
+                            <li><a href="#" class="nav-link text-white"
+                                    onclick="loadPage('studentProfile.html')">Profile
+                                    Changes</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="w-100 d-flex flex-column">
+            <!-- Main Content -->
+            <div class="p-4" style="flex: 1; border: 1px #5C5470 solid;" id="main-content">
+                <h2 class="text-light mb-4">👋 Welcome Ayush!</h2>
+                <p class="text-light">Here’s a quick overview of your profile and enrolled courses:</p>
+
+                <div class="container-fluid">
+                    <!-- Shortcut Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="card shortcut-card text-white bg-primary">
+                                <div class="card-body">
+                                    <h5 class="card-title">Courses Enrolled</h5>
+                                    <p class="card-text fs-3" id="courses-enrolled">0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card shortcut-card text-white bg-info">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Students</h5>
+                                    <p class="card-text fs-3" id="total-students">0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card shortcut-card text-white bg-warning">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Courses</h5>
+                                    <p class="card-text fs-3" id="total-courses">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chart Section -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card chart-card">
+                                <div class="card-header bg-secondary text-white">
+                                    Student vs Courses
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="studentCourseChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card chart-card">
+                                <div class="card-header bg-secondary text-white">
+                                    Course Popularity
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="coursePopularityChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        &copy; 2025 Student Panel. All rights reserved.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./bootstrap-5.3.5-dist/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./bootstrap-5.3.5-dist/js/studentPanel.js"></script>
+
+
+    <script>
+        const loggedInUser = {
+            id: sessionStorage.getItem("userId"),
+            name: sessionStorage.getItem("userName"),
+            usertype: sessionStorage.getItem("userType")
+        };
+        if (!loggedInUser || loggedInUser.usertype !== "student") {
+            // Optional: Redirect to login if not authenticated
+            window.location.href = "./pages/signIn.html";
+        }  else {
+            // Use the user's name to personalize UI
+            document.querySelector("h2").innerHTML = `👋 Welcome ${loggedInUser.name}!`;
+            document.addEventListener("DOMContentLoaded", () => {
+                initStudentDashboard();
+              });
+        }
+
+        const dropdownBtn = document.querySelector(".btn-group .dropdown-toggle");
+        if (dropdownBtn && loggedInUser.name) {
+            dropdownBtn.textContent = loggedInUser.name;
+        }
+
+        function logout() {
+            sessionStorage.removeItem("loggedInUser");
+            window.location.href = "./pages/signIn.html";
+        }
+
+        function loadPage(page) {
+            $('#main-content').load('pages/' + page, function () {
+                if (page === 'studentGraph.html') {
+                    initStudentGraphs();
+                } /*else if (page === 'studentDashboard.html') {
+                    initStudentDashboard();
+                }*/ else if (page === 'studentReport.html') {
+                    initStudentReportCharts();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

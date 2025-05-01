@@ -1,0 +1,535 @@
+{
+  "Users": [
+    {
+      "userid": 1,
+      "name": "pratik",
+      "email": "pratik@gmail.com",
+      "password": "pra@1234",
+      "phone": "1234567891",
+      "usertype": "admin",
+      "id": "5f69"
+    },
+    {
+      "userid": 2,
+      "name": "Riya",
+      "email": "riya@gmail.com",
+      "password": "riya@1234",
+      "phone": "9876543211",
+      "usertype": "student",
+      "id": "8704"
+    },
+    {
+      "userid": 3,
+      "name": "raj",
+      "email": "raj@gmail.com",
+      "password": "raj@123",
+      "phone": 1122334455,
+      "usertype": "student",
+      "id": "a26e"
+    },
+    {
+      "userid": 4,
+      "name": "neha",
+      "email": "neha@gmail.com",
+      "password": "neha@123",
+      "phone": 9988776655,
+      "usertype": "student",
+      "id": "db86"
+    },
+    {
+      "userid": 5,
+      "name": "amit",
+      "email": "amit@gmail.com",
+      "password": "amit@123",
+      "phone": 1231231234,
+      "usertype": "student",
+      "id": "31ab"
+    },
+    {
+      "userid": 6,
+      "name": "priya",
+      "email": "priya@gmail.com",
+      "password": "priya@123",
+      "phone": 3213213210,
+      "usertype": "student",
+      "id": "1aaf"
+    },
+    {
+      "userid": 7,
+      "name": "vikas",
+      "email": "vikas@gmail.com",
+      "password": "vikas@123",
+      "phone": 4564564567,
+      "usertype": "student",
+      "id": "d638"
+    },
+    {
+      "userid": 8,
+      "name": "sana",
+      "email": "sana@gmail.com",
+      "password": "sana@123",
+      "phone": 7897897890,
+      "usertype": "student",
+      "id": "1f70"
+    },
+    {
+      "userid": 9,
+      "name": "john",
+      "email": "john@gmail.com",
+      "password": "john@123",
+      "phone": 1112223334,
+      "usertype": "student",
+      "id": "5533"
+    },
+    {
+      "userid": 10,
+      "name": "Kiran",
+      "email": "kiran@gmail.com",
+      "password": "kiran@1234",
+      "phone": "7020199009",
+      "usertype": "student",
+      "id": "0069"
+    },
+    {
+      "userid": 11,
+      "id": "8800",
+      "name": "Ayush",
+      "email": "ayush@gmail.com",
+      "password": "ayush@1234",
+      "phone": "465346553",
+      "usertype": "admin"
+    },
+    {
+      "userid": 12,
+      "id": "b3e3",
+      "name": "Akshay",
+      "email": "akshay@gmail.com",
+      "password": "akshay@123",
+      "phone": "8092030091",
+      "usertype": "admin"
+    },
+    {
+      "userid": 13,
+      "id": "de35",
+      "name": "Prerana",
+      "email": "pre@gmail.com",
+      "password": "prer@123",
+      "phone": "9010012001",
+      "usertype": "admin"
+    },
+    {
+      "id": "59e4",
+      "userid": 14,
+      "name": "Ayush Kale",
+      "email": "ak12@gmail.com",
+      "password": "ak@12345",
+      "phone": "7021554894",
+      "usertype": "student"
+    },
+    {
+      "id": "f1c7",
+      "userid": 15,
+      "name": "Mukul Salvi",
+      "email": "mukul@gmail.com",
+      "password": "muk@123",
+      "phone": 7254234562,
+      "usertype": "student"
+    },
+    {
+      "id": "0bee",
+      "userid": 16,
+      "name": "Gurgee",
+      "email": "garg@gmail.com",
+      "password": "garg@123",
+      "phone": 7000001009,
+      "usertype": "admin"
+    },
+    {
+      "id": "65d8",
+      "userid": 17,
+      "name": "Mukul",
+      "email": "teeneger@gmail.com",
+      "password": "Mukul123!",
+      "phone": 7021554893,
+      "usertype": "student"
+    },
+    {
+      "id": "25d4",
+      "userid": 18,
+      "name": "Ayush",
+      "email": "ak@gmail.com",
+      "password": "ak@1234",
+      "phone": 7020187747,
+      "usertype": "admin"
+    },
+    {
+      "id": "b9ac",
+      "userid": 19,
+      "name": "Rohit",
+      "email": "rohit@gmail.com",
+      "password": "rohit@123",
+      "phone": 7020187747,
+      "usertype": "admin"
+    },
+    {
+      "userid": 20,
+      "name": "aush",
+      "email": "pus@gmail.com",
+      "password": "aus@1234",
+      "phone": "1234567832",
+      "usertype": "student",
+      "id": "3g33"
+    }
+  ],
+  "Courses": [
+    {
+      "CourseID": 1,
+      "Title": "Python Basics",
+      "Description": "Introductory course on Python",
+      "InstructorID": 1,
+      "Fees": 1500,
+      "id": "e8ce"
+    },
+    {
+      "CourseID": 2,
+      "Title": "Web Development",
+      "Description": "HTML, CSS, JavaScript course",
+      "InstructorID": 2,
+      "Fees": 2000,
+      "id": "fc3f"
+    },
+    {
+      "CourseID": 3,
+      "Title": "Machine Learning",
+      "Description": "Basics of ML and algorithms",
+      "InstructorID": 3,
+      "Fees": 3000,
+      "id": "c46e"
+    },
+    {
+      "CourseID": 4,
+      "Title": "Java Programming",
+      "Description": "Core Java concepts",
+      "InstructorID": 4,
+      "Fees": 1800,
+      "id": "11b9"
+    },
+    {
+      "CourseID": 5,
+      "Title": "Data Science",
+      "Description": "Data analysis and visualization",
+      "InstructorID": 5,
+      "Fees": 3500,
+      "id": "a5f7"
+    },
+    {
+      "CourseID": 6,
+      "Title": "React JS",
+      "Description": "Frontend development with React",
+      "InstructorID": 2,
+      "Fees": 2500,
+      "id": "48fe"
+    },
+    {
+      "CourseID": 7,
+      "Title": "Cloud Computing",
+      "Description": "Introduction to AWS and Azure",
+      "InstructorID": 6,
+      "Fees": 4000,
+      "id": "c58b"
+    },
+    {
+      "CourseID": 8,
+      "Title": "Cybersecurity",
+      "Description": "Securing systems and networks",
+      "InstructorID": 7,
+      "Fees": 3200,
+      "id": "24c5"
+    },
+    {
+      "CourseID": 9,
+      "Title": "SQL & Databases",
+      "Description": "Learn to use SQL for databases",
+      "InstructorID": 8,
+      "Fees": 1700,
+      "id": "42e1"
+    },
+    {
+      "CourseID": 10,
+      "Title": "AI with Python",
+      "Description": "Learn AI concepts using Python",
+      "InstructorID": 3,
+      "Fees": 3800,
+      "id": "07ba"
+    },
+    {
+      "CourseID": 11,
+      "Title": "AI with ML With Eth",
+      "Description": "Machine Learning",
+      "InstructorID": 7,
+      "Fees": 5000,
+      "id": "353d"
+    },
+    {
+      "CourseID": 12,
+      "id": "2418",
+      "Title": "SQL-Advance",
+      "Description": "Sql advance course",
+      "InstructorID": "11",
+      "Fees": "5000"
+    },
+    {
+      "id": "9ba9",
+      "CourseID": 13,
+      "Title": "AI&DS",
+      "Description": "Artificial Intelligence and Data Science",
+      "InstructorID": "11",
+      "Fees": "4500"
+    }
+  ],
+  "Instructors": [
+    {
+      "InstructorID": 1,
+      "Name": "Dr. Sharma",
+      "Expertise": "Python",
+      "id": "15ca"
+    },
+    {
+      "InstructorID": 2,
+      "Name": "Ms. Verma",
+      "Expertise": "Frontend Development",
+      "id": "4cc1"
+    },
+    {
+      "InstructorID": 3,
+      "Name": "Mr. Kumar",
+      "Expertise": "Machine Learning & AI",
+      "id": "4ec6"
+    },
+    {
+      "InstructorID": 4,
+      "Name": "Mrs. Rao",
+      "Expertise": "Java",
+      "id": "8df9"
+    },
+    {
+      "InstructorID": 5,
+      "Name": "Dr. Mehta",
+      "Expertise": "Data Science",
+      "id": "dea3"
+    },
+    {
+      "InstructorID": 6,
+      "Name": "Mr. Khan",
+      "Expertise": "Cloud Computing",
+      "id": "1c66"
+    },
+    {
+      "InstructorID": 7,
+      "Name": "Ms. Das",
+      "Expertise": "Cybersecurity",
+      "id": "fcbe"
+    },
+    {
+      "InstructorID": 8,
+      "Name": "Mr. Thomas",
+      "Expertise": "Databases",
+      "id": "545e"
+    },
+    {
+      "InstructorID": 9,
+      "Name": "Mrs. Joshi",
+      "Expertise": "C Programming",
+      "id": "0b70"
+    },
+    {
+      "InstructorID": 10,
+      "Name": "Mr. Patel",
+      "Expertise": "Blockchain",
+      "id": "40c4"
+    },
+    {
+      "InstructorID": 11,
+      "id": "3ce3",
+      "Name": "Ayush",
+      "Expertise": "SQLInject"
+    }
+  ],
+  "Enrollments": [
+    {
+      "EnrollmentID": 1,
+      "UserID": 1,
+      "CourseID": 1,
+      "EnrollmentDate": "2025-04-01",
+      "id": "efa3"
+    },
+    {
+      "EnrollmentID": 2,
+      "UserID": 2,
+      "CourseID": 2,
+      "EnrollmentDate": "2025-04-02",
+      "id": "7cd9"
+    },
+    {
+      "EnrollmentID": 3,
+      "UserID": 3,
+      "CourseID": 3,
+      "EnrollmentDate": "2025-04-03",
+      "id": "77c7"
+    },
+    {
+      "EnrollmentID": 4,
+      "UserID": 4,
+      "CourseID": 4,
+      "EnrollmentDate": "2025-04-04",
+      "id": "6b4e"
+    },
+    {
+      "EnrollmentID": 5,
+      "UserID": 5,
+      "CourseID": 5,
+      "EnrollmentDate": "2025-04-05",
+      "id": "a344"
+    },
+    {
+      "EnrollmentID": 6,
+      "UserID": 6,
+      "CourseID": 6,
+      "EnrollmentDate": "2025-04-06",
+      "id": "682b"
+    },
+    {
+      "EnrollmentID": 7,
+      "UserID": 7,
+      "CourseID": 7,
+      "EnrollmentDate": "2025-04-07",
+      "id": "8ecf"
+    },
+    {
+      "EnrollmentID": 8,
+      "UserID": 8,
+      "CourseID": 8,
+      "EnrollmentDate": "2025-04-08",
+      "id": "ab4e"
+    },
+    {
+      "EnrollmentID": 9,
+      "UserID": 9,
+      "CourseID": 9,
+      "EnrollmentDate": "2025-04-09",
+      "id": "b9cd"
+    },
+    {
+      "EnrollmentID": 10,
+      "UserID": 10,
+      "CourseID": 10,
+      "EnrollmentDate": "2025-04-10",
+      "id": "546a"
+    },
+    {
+      "EnrollmentID": 11,
+      "UserID": 2,
+      "CourseID": 1,
+      "EnrollmentDate": "2025-04-10",
+      "id": "edfd"
+    },
+    {
+      "id": "5da6",
+      "UserID": 7,
+      "CourseID": 11,
+      "EnrollmentDate": "2025-04-20",
+      "EnrollmentID": 12
+    },
+    {
+      "UserID": 14,
+      "CourseID": 11,
+      "EnrollmentDate": "2025-04-20",
+      "EnrollmentID": 13,
+      "id": "6e09"
+    },
+    {
+      "UserID": 14,
+      "CourseID": 9,
+      "EnrollmentDate": "2025-04-19",
+      "EnrollmentID": 14,
+      "id": "4630"
+    },
+    {
+      "id": "c028",
+      "EnrollmentID": 15,
+      "UserID": 3,
+      "CourseID": 4,
+      "EnrollmentDate": "2025-04-20"
+    },
+    {
+      "id": "9eeb",
+      "EnrollmentID": 16,
+      "UserID": 3,
+      "CourseID": 1,
+      "EnrollmentDate": "2025-04-20"
+    },
+    {
+      "id": "818c",
+      "EnrollmentID": 17,
+      "UserID": 15,
+      "CourseID": 2,
+      "EnrollmentDate": "2025-04-21"
+    },
+    {
+      "id": "1c57",
+      "EnrollmentID": 18,
+      "UserID": 17,
+      "CourseID": 1,
+      "EnrollmentDate": "2025-04-21"
+    },
+    {
+      "id": "4216",
+      "UserID": 1,
+      "CourseID": 3,
+      "EnrollmentDate": "2025-04-01",
+      "EnrollmentID": 19
+    },
+    {
+      "id": "bb6e",
+      "UserID": 15,
+      "CourseID": 3,
+      "EnrollmentDate": "2025-04-21",
+      "EnrollmentID": 20
+    },
+    {
+      "id": "7cef",
+      "EnrollmentID": 21,
+      "UserID": 14,
+      "CourseID": 2,
+      "EnrollmentDate": "2025-04-21"
+    },
+    {
+      "id": "579b",
+      "EnrollmentID": 22,
+      "UserID": 14,
+      "CourseID": 13,
+      "EnrollmentDate": "2025-04-22"
+    },
+    {
+      "id": "1839",
+      "EnrollmentID": 23,
+      "UserID": 14,
+      "CourseID": 4,
+      "EnrollmentDate": "2025-04-22"
+    },
+    {
+      "id": "e33c",
+      "UserID": 2,
+      "CourseID": 1,
+      "EnrollmentDate": "2025-04-22",
+      "EnrollmentID": 24
+    },
+    {
+      "id": "839c",
+      "UserID": 2,
+      "CourseID": 1,
+      "EnrollmentDate": "2025-04-22",
+      "EnrollmentID": 25
+    }
+  ]
+}

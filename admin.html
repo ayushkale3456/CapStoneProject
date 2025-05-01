@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link href="./bootstrap-5.3.5-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./bootstrap-5.3.5-dist/css/bootstrap.journal.min.css">
+    <link rel="stylesheet" href="./bootstrap-5.3.5-dist/css/style.css" />
+</head>
+
+<body class="bg-dark">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-dark d-flex justify-content-between p-2" data-bs-theme="dark">
+        <a class="navbar-brand" style="color: rgb(185, 180, 199);" href="./admin.html">Admin Panel</a>
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true"
+                style="color: rgb(185, 180, 199);">Admin</button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="#" onclick="loadPage('adminProfile.html')">Profile</a>
+                <a class="dropdown-item" href="#" onclick="logout()">LogOut</a>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="bg-dark text-white sidebar p-3" style="width: 250px; min-height: 100vh;">
+            <h5 class="mb-3" style="color: rgb(185, 180, 199);">Navigation</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white" onclick="loadPage('adminDashboard.html')">
+                        <i class="fa fa-chart-line me-2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white dropdown-toggle" data-bs-toggle="collapse" href="#menu1">
+                        <i class="fa fa-layer-group me-2"></i> Menu
+                    </a>
+                    <div class="collapse" id="menu1">
+                        <ul class="nav flex-column ms-3">
+                            <li><a href="#" class="nav-link text-white" onclick="loadPage('CourseMaster.html')">
+                                    <i class="fa-solid fa-graduation-cap"></i> Course
+                                </a>
+                            </li>
+                            <li><a href="#" class="nav-link text-white" onclick="loadPage('InstructorMaster.html')">
+                                    <i class="fa-solid fa-chalkboard-user"></i> Instructor
+                                </a>
+                            </li>
+                            <li><a href="#" class="nav-link text-white" onclick="loadPage('StudentMaster.html')">
+                                    <i class="fa-solid fa-user"></i> Student
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-white"
+                                    onclick="loadPage('EnrollementTransaction.html')">
+                                    <i class="fa-solid fa-file-invoice me-2"></i> Enrollment Transactions
+                                </a>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white dropdown-toggle" data-bs-toggle="collapse"
+                                    href="#menuQueries">
+                                    <i class="fa fa-question-circle me-2"></i> Queries
+                                </a>
+                                <div class="collapse" id="menuQueries">
+                                    <ul class="nav flex-column ms-3">
+                                        <li>
+                                            <a href="#" class="nav-link text-white"
+                                                onclick="loadPage('coursesByStudent.html')">
+                                                <i class="fa-solid fa-user-graduate me-2"></i> Courses by Students
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="nav-link text-white"
+                                                onclick="loadPage('studentsPerCourse.html')">
+                                                <i class="fa-solid fa-book me-2"></i> Students per Course
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="nav-link text-white dropdown-toggle" data-bs-toggle="collapse" href="#menu2">
+                                    <i class="fa-solid fa-chart-bar me-2"></i> Analytics
+                                </a>
+                                <div class="collapse" id="menu2">
+                                    <ul class="nav flex-column ms-3">
+                                        <li><a href="#" class="nav-link text-white"
+                                                onclick="loadPage('adminGraph.html')">
+                                                <i class="fa-solid fa-chart-pie me-2"></i> Graph
+                                            </a>
+                                        </li>
+                                        <li><a href="#" class="nav-link text-white"
+                                                onclick="loadPage('adminReport.html')">
+                                                <i class="fa-solid fa-file-lines me-2"></i> Report
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white dropdown-toggle" data-bs-toggle="collapse" href="#menu3">
+                        <i class="fa fa-cog me-2"></i> Settings
+                    </a>
+                    <div class="collapse" id="menu3">
+                        <ul class="nav flex-column ms-3">
+                            <li><a href="#" class="nav-link text-white" onclick="loadPage('adminProfile.html')">Change
+                                    Profile</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="p-4" style="flex: 1; border: 1px #5C5470 solid;" id="main-content">
+            <h2 class="text-light">Welcome, <span id="adminName">Admin!</span></h2>
+            <p class="text-secondary">Use the navigation menu to manage courses, instructors, students, analytics, and
+                settings.</p>
+
+            <div class="row mt-4">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card border-secondary h-100 bg-dark text-white">
+                        <div class="card-body d-flex align-items-center">
+                            <i class="fa fa-users fa-2x me-3" style="color: #B9B4C7;"></i>
+                            <div>
+                                <h6 class="card-title text-secondary">Total Users</h6>
+                                <h4 class="card-text" style="color: #B9B4C7;" id="totalUsers">Loading...</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card border-secondary h-100 bg-dark text-white">
+                        <div class="card-body d-flex align-items-center">
+                            <i class="fa fa-book-open fa-2x me-3" style="color: #B9B4C7;"></i>
+                            <div>
+                                <h6 class="card-title text-secondary">Total Courses</h6>
+                                <h4 class="card-text" style="color: #B9B4C7;" id="totalCourses">Loading...</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card border-secondary h-100 bg-dark text-white">
+                        <div class="card-body d-flex align-items-center">
+                            <i class="fa fa-chalkboard-teacher fa-2x me-3" style="color: #B9B4C7;"></i>
+                            <div>
+                                <h6 class="card-title text-secondary">Instructors</h6>
+                                <h4 class="card-text" style="color: #B9B4C7;" id="totalInstructors">Loading...</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card border-secondary h-100 bg-dark text-white">
+                        <div class="card-body d-flex align-items-center">
+                            <i class="fa fa-user-pen fa-2x me-3" style="color: #B9B4C7;"></i>
+                            <div>
+                                <h6 class="card-title text-secondary">Enrollments</h6>
+                                <h4 class="card-text" style="color: #B9B4C7;" id="totalEnrollments">Loading...</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        &copy; 2025 Admin Panel. All rights reserved.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./bootstrap-5.3.5-dist/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+    <script>
+        function loadPage(page) {
+            $('#main-content').load('pages/' + page, function () {
+                if (page === 'adminGraph.html') {
+                    initAdminGraphs();
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('example.json')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('totalUsers').textContent = data.Users.length;
+                    document.getElementById('totalCourses').textContent = data.Courses.length;
+                    document.getElementById('totalInstructors').textContent = data.Instructors.length;
+                    document.getElementById('totalEnrollments').textContent = data.Enrollments.length;
+                })
+                .catch(err => {
+                    console.error('Error loading dashboard stats:', err);
+                });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const userType = sessionStorage.getItem("userType");
+            const userName = sessionStorage.getItem("userName");
+
+            if (!userType || userType !== "admin") {
+                window.location.href = "./pages/signIn.html";
+                return;
+            }
+
+            const dropdownBtn = document.querySelector(".btn-group .dropdown-toggle");
+            if (dropdownBtn && userName) {
+                dropdownBtn.textContent = userName;
+            }
+
+
+            fetch('example.json')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("adminName").textContent = userName || "Admin";
+                    document.getElementById('totalUsers').textContent = data.Users.length;
+                    document.getElementById('totalCourses').textContent = data.Courses.length;
+                    document.getElementById('totalInstructors').textContent = data.Instructors.length;
+                    document.getElementById('totalEnrollments').textContent = data.Enrollments.length;
+                })
+                .catch(err => {
+                    console.error('Error loading dashboard stats:', err);
+                });
+
+            
+
+        });
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = './pages/signIn.html';
+        }
+    </script>
+</body>
+
+</html>

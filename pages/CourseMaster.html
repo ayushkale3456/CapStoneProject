@@ -1,0 +1,53 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+<div class="p-4" style="flex: 1; border: 1px #5C5470 solid;" id="main-content">
+    <h2 class="text-light mb-4">Course Management</h2>
+    <p class="text-secondary">Create and manage courses with assigned instructors.</p>
+
+    <form id="courseForm" class="mb-4">
+        <div class="mb-3">
+            <label for="name" class="form-label text-light">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Course Name">
+            <div class="invalid-feedback">At least 5 characters</div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label text-light">Description:</label>
+            <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+            <div class="invalid-feedback">Invalid input</div>
+        </div>
+        <div class="mb-3">
+            <label for="instructorId" class="form-label text-light">Instructor:</label>
+            <select class="form-select" id="instructorId" name="course">
+                <option value="">--Select--</option>
+            </select>
+            <div class="invalid-feedback">Select an Instructor</div>
+        </div>
+        <div class="mb-3">
+            <label for="fees" class="form-label text-light">Fees:</label>
+            <input type="number" class="form-control" id="fees" name="fees" placeholder="Fees">
+            <div class="invalid-feedback">Invalid Fees</div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit">Add Course</button>
+    </form>
+
+    <hr class="border-secondary" />
+
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped table-hover align-middle">
+            <thead class="table-secondary text-dark">
+                <tr>
+                    <th>Course Name</th>
+                    <th>Description</th>
+                    <th>Instructor</th>
+                    <th>Fees</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="courseTableBody">
+                <!-- Rows will be populated dynamically -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="../bootstrap-5.3.5-dist/js/course.js"></script>

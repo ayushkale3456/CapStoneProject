@@ -1,0 +1,169 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active text-white" aria-current="page">Dashboard</li>
+    </ol>
+</nav>
+
+<div class="container-fluid">
+    <!-- Shortcut Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card shortcut-card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Courses Enrolled</h5>
+                    <p class="card-text fs-3" id="courses-enrolled">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shortcut-card text-white bg-info">
+                <div class="card-body">
+                    <h5 class="card-title">Total Students</h5>
+                    <p class="card-text fs-3" id="total-students">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shortcut-card text-white bg-warning">
+                <div class="card-body">
+                    <h5 class="card-title">Total Courses</h5>
+                    <p class="card-text fs-3" id="total-courses">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card chart-card">
+                <div class="card-header bg-secondary text-white">
+                    Student vs Courses
+                </div>
+                <div class="card-body">
+                    <canvas id="studentCourseChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card chart-card">
+                <div class="card-header bg-secondary text-white">
+                    Course Popularity
+                </div>
+                <div class="card-body">
+                    <canvas id="coursePopularityChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    async function initStudentDashboard() {
+        try {
+            const response = await fetch('../example.json');
+            const database = await response.json();
+
+            const students = database.Users.filter(user => user.usertype === "student");
+            const totalStudents = students.length;
+            const totalCourses = database.Courses.length;
+
+            // 🔐 Get logged-in student ID from sessionStorage
+            const userID = parseInt(sessionStorage.getItem('userId'));
+            if (!userID) {
+                alert("User not logged in. Redirecting to login...");
+                window.location.href = "../pages/sigIn.html"; // redirect if not logged in
+                return;
+            }
+
+            const enrolledCourses = database.Enrollments?.filter(e => e.UserID === userID) || [];
+            const assignmentsSubmitted = enrolledCourses.length * 2; // Dummy logic
+
+            document.getElementById('courses-enrolled').innerText = enrolledCourses.length;
+            document.getElementById('total-students').innerText = totalStudents;
+            document.getElementById('total-courses').innerText = totalCourses;
+
+            const ctx = document.getElementById('studentCourseChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Students', 'Courses'],
+                    datasets: [{
+                        label: 'Count',
+                        data: [totalStudents, totalCourses],
+                        backgroundColor: ['#0d6efd', '#20c997']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // Group enrollments by CourseID
+            const courseEnrollCounts = {};
+            database.Enrollments.forEach(enrollment => {
+                const courseID = enrollment.CourseID;
+                if (!courseEnrollCounts[courseID]) {
+                    courseEnrollCounts[courseID] = 0;
+                }
+                courseEnrollCounts[courseID]++;
+            });
+
+            // Prepare labels and data for the chart
+            const courseLabels = [];
+            const courseData = [];
+
+            database.Courses.forEach(course => {
+                courseLabels.push(course.Title);
+                courseData.push(courseEnrollCounts[course.CourseID] || 0); // 0 if no enrollments
+            });
+
+            // Create bar chart for course popularity
+            const ctxPopularity = document.getElementById('coursePopularityChart').getContext('2d');
+            new Chart(ctxPopularity, {
+                type: 'bar',
+                data: {
+                    labels: courseLabels,
+                    datasets: [{
+                        label: 'Enrollments',
+                        data: courseData,
+                        backgroundColor: '#ffc107'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return `${context.parsed.y} students`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Students'
+                            }
+                        }
+                    }
+                }
+            });
+
+        } catch (error) {
+            console.error('Error loading JSON:', error);
+        }
+    }
+
+    initStudentDashboard();
+</script>

@@ -1,0 +1,227 @@
+<!-- <nav aria-label="breadcrumb">
+    <ol class="breadcrumb " data-bs-theme="light">
+        <li class="breadcrumb-item"><a href="../admin.html" style="text-decoration: none; color: aliceblue;">Admin Panel</a></li>
+        <li class="breadcrumb-item active text-light">Graph</li>
+    </ol>
+</nav>
+
+<div class="p-4" style="flex: 1; border: 1px #5C5470 solid" id="main-content" >
+    <h2>Welcome to Student Graph Analysis Page</h2>
+    <p>This page is used to make graphical analytics.</p>
+</div> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-dark text-white">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb" data-bs-theme="light">
+            <li class="breadcrumb-item">
+                <a href="../admin.html" style="text-decoration: none; color: aliceblue;">Admin Panel</a>
+            </li>
+            <li class="breadcrumb-item active text-light">Graph</li>
+        </ol>
+    </nav>
+
+    <div class="p-4" id="main-content" style="border: 1px #5C5470 solid;">
+        <h2 class="text-light">Student Graph Analysis</h2>
+        <p class="text-secondary">Visual representation of student data and course statistics.</p>
+
+        <div class="row mt-4">
+            <!-- Students per Course -->
+            <div class="col-md-6 mb-4">
+                <div class="card bg-dark text-white shadow">
+                    <div class="card-header">Enrollments per Course</div>
+                    <div class="card-body">
+                        <canvas id="courseChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monthly Student Registrations -->
+            <div class="col-md-6 mb-4">
+                <div class="card bg-dark text-white shadow">
+                    <div class="card-header">Monthly Student Registrations (April 2025)</div>
+                    <div class="card-body">
+                        <canvas id="monthlyChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Courses by Instructor -->
+            <div class="col-md-6 mb-4">
+                <div class="card bg-dark text-white shadow">
+                    <div class="card-header">Courses per Instructor</div>
+                    <div class="card-body">
+                        <canvas id="instructorChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top 5 Courses by Fees -->
+            <div class="col-md-6 mb-4">
+                <div class="card bg-dark text-white shadow">
+                    <div class="card-header">Top 5 Courses by Fees</div>
+                    <div class="card-body">
+                        <canvas id="feesChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function initAdminGraphs() {
+            try {
+                const apiUrl = 'http://localhost:8080';
+
+                const [usersRes, coursesRes, enrollmentsRes, instructorsRes] = await Promise.all([
+                    fetch(`${apiUrl}/users`),
+                    fetch(`${apiUrl}/courses`),
+                    fetch(`${apiUrl}/enrollments`),
+                    fetch(`${apiUrl}/instructors`)
+                ]);
+
+                const users = await usersRes.json();
+                const courses = await coursesRes.json();
+                const enrollments = await enrollmentsRes.json();
+                const instructors = await instructorsRes.json();
+                const instructorMap = {};
+                instructors.forEach(inst => {
+                    instructorMap[inst.instructorID] = inst.name;
+                });
+
+
+                // --- 1. Enrollments per Course ---
+                const courseEnrollMap = {};
+                const courseMap = {};
+                courses.forEach(course => {
+                    courseMap[course.courseID] = course.title;
+                    courseEnrollMap[course.title] = 0;
+                });
+                enrollments.forEach(enr => {
+                    const title = courseMap[enr.courseID];
+                    if (title) courseEnrollMap[title]++;
+                });
+
+                const courseLabels = Object.keys(courseEnrollMap);
+                const enrollCounts = Object.values(courseEnrollMap);
+
+                new Chart(document.getElementById('courseChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: courseLabels,
+                        datasets: [{
+                            label: 'Enrollments',
+                            data: enrollCounts,
+                            backgroundColor: '#4caf50',
+                        }]
+                    },
+                    options: {
+                        plugins: { legend: { display: false } },
+                        responsive: true,
+                        scales: { y: { beginAtZero: true } }
+                    }
+                });
+
+                // --- 2. Monthly Enrollments (April 2025) ---
+                const dailyEnrollments = {};
+                enrollments.forEach(enr => {
+                    if (enr.enrollmentDate?.startsWith("2025-04")) {
+                        const day = new Date(enr.enrollmentDate).getDate().toString().padStart(2, '0');
+                        dailyEnrollments[`Apr ${day}`] = (dailyEnrollments[`Apr ${day}`] || 0) + 1;
+                    }
+                });
+
+                const days = Object.keys(dailyEnrollments);
+                const enrollsPerDay = Object.values(dailyEnrollments);
+
+                new Chart(document.getElementById('monthlyChart'), {
+                    type: 'line',
+                    data: {
+                        labels: days,
+                        datasets: [{
+                            label: 'Daily Enrollments',
+                            data: enrollsPerDay,
+                            backgroundColor: 'rgba(33, 150, 243, 0.2)',
+                            borderColor: '#2196f3',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: { y: { beginAtZero: true } }
+                    }
+                });
+
+
+                // --- 3. Courses per Instructor ---
+                const instructorCount = {};
+                courses.forEach(c => {
+                    instructorCount[c.instructorID] = (instructorCount[c.instructorID] || 0) + 1;
+                });
+
+                const instructorLabels = Object.keys(instructorCount).map(id => instructorMap[id] || `Instructor ${id}`);
+                const coursesPerInstructor = Object.values(instructorCount);
+
+                new Chart(document.getElementById('instructorChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: instructorLabels,
+                        datasets: [{
+                            label: 'Courses',
+                            data: coursesPerInstructor,
+                            backgroundColor: '#ff9800'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: { y: { beginAtZero: true } }
+                    }
+                });
+
+
+                // --- 4. Top 5 Courses by Fees ---
+                const top5Courses = [...courses]
+                    .sort((a, b) => b.fees - a.fees)
+                    .slice(0, 5);
+
+                new Chart(document.getElementById('feesChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: top5Courses.map(c => c.title),
+                        datasets: [{
+                            label: 'Fees (INR)',
+                            data: top5Courses.map(c => c.fees),
+                            backgroundColor: '#e91e63'
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        scales: { x: { beginAtZero: true } }
+                    }
+                });
+
+            } catch (error) {
+                console.error('Error loading graph data:', error);
+            }
+        }
+
+        window.onload = initAdminGraphs;
+    </script>
+
+
+</body>
+
+</html>

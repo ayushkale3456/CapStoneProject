@@ -1,0 +1,82 @@
+<div class="p-4 text-white">
+    <h2 class="h4 mb-4">Courses by Student</h2>
+    <div class="row">
+        <!-- Student List -->
+        <div class="col-md-6 mb-3">
+            <h5 class="mb-3 text-secondary">Students</h5>
+            <ul id="studentList" class="list-group"></ul>
+        </div>
+
+        <!-- Course Details -->
+        <div class="col-md-6">
+            <h5 class="mb-3 text-secondary">Course Details</h5>
+            <div id="courseDetails" class="bg-secondary bg-opacity-10 p-3 rounded border text-light">
+                <p class="text-light">Select a student to view enrolled courses.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (async () => {
+        try {
+            const [usersRes, enrollmentsRes, coursesRes, instructorsRes] = await Promise.all([
+                fetch('http://localhost:8080/users'),
+                fetch('http://localhost:8080/enrollments'),
+                fetch('http://localhost:8080/courses'),
+                fetch('http://localhost:8080/instructors')
+            ]);
+
+            const [users, enrollments, courses, instructors] = await Promise.all([
+                usersRes.json(),
+                enrollmentsRes.json(),
+                coursesRes.json(),
+                instructorsRes.json()
+            ]);
+
+            const students = users.filter(u => u.usertype === 'student');
+
+            const studentList = document.getElementById('studentList');
+            const courseDetails = document.getElementById('courseDetails');
+
+            students.forEach(student => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item bg-dark text-light list-group-item-action';
+                li.textContent = `${student.name} (${student.email})`;
+                li.style.cursor = 'pointer';
+
+                li.addEventListener('click', () => {
+                    const studentCourses = enrollments
+                        .filter(e => e.userID === student.userid)
+                        .map(e => {
+                            const course = courses.find(c => c.courseID === e.courseID);
+                            const instructor = instructors.find(i => i.instructorID == course?.instructorID);
+                            return {
+                                title: course?.title || 'Untitled',
+                                description: course?.description || 'No description.',
+                                fees: course?.fees || 0,
+                                instructor: instructor?.name || 'Unknown',
+                                date: e.enrollmentDate
+                            };
+                        });
+
+                    courseDetails.innerHTML = studentCourses.length
+                        ? studentCourses.map(c => `
+                          <div class="mb-3 border-bottom pb-2">
+                            <h6 class="fw-bold">${c.title}</h6>
+                            <p class="mb-1 text-light">${c.description}</p>
+                            <p class="mb-1">Instructor: <span class="fw-semibold">${c.instructor}</span></p>
+                            <p class="mb-1">Fees: ₹${c.fees}</p>
+                            <small class="text-muted">Enrolled on: ${c.date}</small>
+                          </div>
+                        `).join('')
+                        : '<p class="text-muted">No courses enrolled.</p>';
+                });
+
+                studentList.appendChild(li);
+            });
+        } catch (err) {
+            console.error("Failed to load data:", err);
+        }
+    })();
+</script>

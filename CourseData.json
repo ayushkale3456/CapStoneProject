@@ -1,0 +1,270 @@
+{
+    "Users": [
+        {
+            "userid": "1",
+            "name": "pratik",
+            "email": "pratik@gmail.com",
+            "password": "pra@1234",
+            "phone": 1234567890,
+            "usertype": "admin"
+        },
+        {
+            "userid": "2",
+            "name": "riya",
+            "email": "riya@gmail.com",
+            "password": "riya@123",
+            "phone": 9876543210,
+            "usertype": "student"
+        },
+        {
+            "userid": "3",
+            "name": "raj",
+            "email": "raj@gmail.com",
+            "password": "raj@123",
+            "phone": 1122334455,
+            "usertype": "student"
+        },
+        {
+            "userid": "4",
+            "name": "neha",
+            "email": "neha@gmail.com",
+            "password": "neha@123",
+            "phone": 9988776655,
+            "usertype": "student"
+        },
+        {
+            "userid": "5",
+            "name": "amit",
+            "email": "amit@gmail.com",
+            "password": "amit@123",
+            "phone": 1231231234,
+            "usertype": "student"
+        },
+        {
+            "userid": "6",
+            "name": "priya",
+            "email": "priya@gmail.com",
+            "password": "priya@123",
+            "phone": 3213213210,
+            "usertype": "student"
+        },
+        {
+            "userid": "7",
+            "name": "vikas",
+            "email": "vikas@gmail.com",
+            "password": "vikas@123",
+            "phone": 4564564567,
+            "usertype": "student"
+        },
+        {
+            "userid": "8",
+            "name": "sana",
+            "email": "sana@gmail.com",
+            "password": "sana@123",
+            "phone": 7897897890,
+            "usertype": "student"
+        },
+        {
+            "userid": "9",
+            "name": "john",
+            "email": "john@gmail.com",
+            "password": "john@123",
+            "phone": 1112223334,
+            "usertype": "student"
+        },
+        {
+            "userid": "10",
+            "name": "kiran",
+            "email": "kiran@gmail.com",
+            "password": "kiran@123",
+            "phone": 5556667778,
+            "usertype": "student"
+        }
+    ],
+    "Courses": [
+      {
+          "CourseID": 1,
+          "Title": "Python Basics",
+          "Description": "Introductory course on Python",
+          "InstructorID": 1,
+          "Fees": 1500
+      },
+      {
+          "CourseID": 2,
+          "Title": "Web Development",
+          "Description": "HTML, CSS, JavaScript course",
+          "InstructorID": 2,
+          "Fees": 2000
+      },
+      {
+          "CourseID": 3,
+          "Title": "Machine Learning",
+          "Description": "Basics of ML and algorithms",
+          "InstructorID": 3,
+          "Fees": 3000
+      },
+      {
+          "CourseID": 4,
+          "Title": "Java Programming",
+          "Description": "Core Java concepts",
+          "InstructorID": 4,
+          "Fees": 1800
+      },
+      {
+          "CourseID": 5,
+          "Title": "Data Science",
+          "Description": "Data analysis and visualization",
+          "InstructorID": 5,
+          "Fees": 3500
+      },
+      {
+          "CourseID": 6,
+          "Title": "React JS",
+          "Description": "Frontend development with React",
+          "InstructorID": 2,
+          "Fees": 2500
+      },
+      {
+          "CourseID": 7,
+          "Title": "Cloud Computing",
+          "Description": "Introduction to AWS and Azure",
+          "InstructorID": 6,
+          "Fees": 4000
+      },
+      {
+          "CourseID": 8,
+          "Title": "Cybersecurity",
+          "Description": "Securing systems and networks",
+          "InstructorID": 7,
+          "Fees": 3200
+      },
+      {
+          "CourseID": 9,
+          "Title": "SQL & Databases",
+          "Description": "Learn to use SQL for databases",
+          "InstructorID": 8,
+          "Fees": 1700
+      },
+      {
+          "CourseID": 10,
+          "Title": "AI with Python",
+          "Description": "Learn AI concepts using Python",
+          "InstructorID": 3,
+          "Fees": 3800
+      }
+    ],
+    "Instructors": [
+        {
+            "InstructorID": 1,
+            "Name": "Dr. Sharma",
+            "Expertise": "Python"
+        },
+        {
+            "InstructorID": 2,
+            "Name": "Ms. Verma",
+            "Expertise": "Frontend Development"
+        },
+        {
+            "InstructorID": 3,
+            "Name": "Mr. Kumar",
+            "Expertise": "Machine Learning & AI"
+        },
+        {
+            "InstructorID": 4,
+            "Name": "Mrs. Rao",
+            "Expertise": "Java"
+        },
+        {
+            "InstructorID": 5,
+            "Name": "Dr. Mehta",
+            "Expertise": "Data Science"
+        },
+        {
+            "InstructorID": 6,
+            "Name": "Mr. Khan",
+            "Expertise": "Cloud Computing"
+        },
+        {
+            "InstructorID": 7,
+            "Name": "Ms. Das",
+            "Expertise": "Cybersecurity"
+        },
+        {
+            "InstructorID": 8,
+            "Name": "Mr. Thomas",
+            "Expertise": "Databases"
+        },
+        {
+            "InstructorID": 9,
+            "Name": "Mrs. Joshi",
+            "Expertise": "C Programming"
+        },
+        {
+            "InstructorID": 10,
+            "Name": "Mr. Patel",
+            "Expertise": "Blockchain"
+        }
+    ],
+    "Enrollments": [
+        {
+            "EnrollmentID": 1,
+            "UserID": 1,
+            "CourseID": 1,
+            "EnrollmentDate": "2025-04-01"
+        },
+        {
+            "EnrollmentID": 2,
+            "UserID": 2,
+            "CourseID": 2,
+            "EnrollmentDate": "2025-04-02"
+        },
+        {
+            "EnrollmentID": 3,
+            "UserID": 3,
+            "CourseID": 3,
+            "EnrollmentDate": "2025-04-03"
+        },
+        {
+            "EnrollmentID": 4,
+            "UserID": 4,
+            "CourseID": 4,
+            "EnrollmentDate": "2025-04-04"
+        },
+        {
+            "EnrollmentID": 5,
+            "UserID": 5,
+            "CourseID": 5,
+            "EnrollmentDate": "2025-04-05"
+        },
+        {
+            "EnrollmentID": 6,
+            "UserID": 6,
+            "CourseID": 6,
+            "EnrollmentDate": "2025-04-06"
+        },
+        {
+            "EnrollmentID": 7,
+            "UserID": 7,
+            "CourseID": 7,
+            "EnrollmentDate": "2025-04-07"
+        },
+        {
+            "EnrollmentID": 8,
+            "UserID": 8,
+            "CourseID": 8,
+            "EnrollmentDate": "2025-04-08"
+        },
+        {
+            "EnrollmentID": 9,
+            "UserID": 9,
+            "CourseID": 9,
+            "EnrollmentDate": "2025-04-09"
+        },
+        {
+            "EnrollmentID": 10,
+            "UserID": 10,
+            "CourseID": 10,
+            "EnrollmentDate": "2025-04-10"
+        }
+    ]
+  }

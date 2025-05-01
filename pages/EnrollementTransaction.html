@@ -1,0 +1,54 @@
+<div class="p-4" style="flex: 1; border: 1px #5C5470 solid;" id="main-content">
+    <h2 class="text-light mb-4">Enrollment Management</h2>
+    <p class="text-secondary">Enroll students into courses and manage their enrollments.</p>
+
+    <form id="enrollmentForm" class="mb-4">
+        <div class="mb-3">
+            <label for="userId" class="form-label text-light">Student:</label>
+            <select class="form-select" id="userId" name="userId">
+                <option value="">--Select Student--</option>
+            </select>
+            <div class="invalid-feedback">Select a Student</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="courseId" class="form-label text-light">Course:</label>
+            <select class="form-select" id="courseId" name="courseId">
+                <option value="">--Select Course--</option>
+            </select>
+            <div class="invalid-feedback">Select a Course</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="enrollmentDate" class="form-label text-light">Enrollment Date:</label>
+            <input type="date" class="form-control" id="enrollmentDate" name="enrollmentDate">
+            <div class="invalid-feedback">Enter a valid date</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="submit">Add Enrollment</button>
+    </form>
+
+    <hr class="border-secondary" />
+
+    <div class="mb-3">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search by student or course...">
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped table-hover align-middle" id="enrollmentTable">
+            <thead class="table-secondary text-dark">
+                <tr>
+                    <th>Student Name</th>
+                    <th>Course Name</th>
+                    <th>Instructor</th>
+                    <th>Enrollment Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="enrollmentTableBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="../bootstrap-5.3.5-dist/js/adminEnrollment.js"></script>

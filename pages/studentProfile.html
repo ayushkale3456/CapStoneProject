@@ -1,0 +1,137 @@
+<div class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../student.html">Student</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- <div class="col-md-4">
+            <div class="card bg-gray-800 text-white border-0">
+                <div class="card-header bg-info text-white">
+                    Profile Picture
+                </div>
+                <div class="card-body text-center">
+                    <img src="path/to/profile-pic.jpg" alt="Profile Picture" class="img-fluid rounded-circle"
+                        id="profilePic" style="width: 150px; height: 150px;">
+                    <br>
+                    <button class="btn btn-primary mt-3" onclick="document.getElementById('fileInput').click();">Change
+                        Picture</button>
+                    <input type="file" id="fileInput" class="d-none" onchange="changeProfilePic(event)">
+                </div>
+            </div>
+        </div> -->
+
+        <div class="col-md-8">
+            <!-- Profile Info -->
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    Profile Information
+                </div>
+                <div class="card-body">
+                    <form id="profileForm">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" disabled>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-success" id="editBtn"
+                                onclick="editProfile()">Edit</button>
+                            <button type="button" class="btn btn-primary" id="saveBtn" style="display: none;"
+                                onclick="saveProfile()">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to enable editing of profile fields
+    function editProfile() {
+        // Enable input fields
+        document.getElementById('fullName').disabled = false;
+        document.getElementById('email').disabled = false;
+        document.getElementById('phone').disabled = false;
+
+        // Toggle button visibility
+        document.getElementById('editBtn').style.display = 'none';
+        document.getElementById('saveBtn').style.display = 'inline-block';
+    }
+
+    // Function to save the profile changes
+    async function saveProfile() {
+        const updatedProfile = {
+            name: document.getElementById('fullName').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value
+        };
+
+
+        // Save intended location
+        sessionStorage.setItem("lastPageVisited", "studentProfile");
+
+
+        // Update sessionStorage
+        let user = JSON.parse(sessionStorage.getItem("loggedInUser"));
+        user = { ...user, ...updatedProfile };
+        sessionStorage.setItem("loggedInUser", JSON.stringify(user));
+    
+        // Update JSON Server
+        try {
+            await fetch(`http://localhost:8080/users/${user.userid}`, {
+                method: "PUT", // or use PUT if replacing all fields
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(updatedProfile)
+            });
+    
+            // Optional: show a success message
+            console.log("Profile updated on server:", updatedProfile);
+        } catch (err) {
+            console.error("Failed to update profile on server:", err);
+        }
+    
+        // Update UI state
+        document.getElementById('fullName').disabled = true;
+        document.getElementById('email').disabled = true;
+        document.getElementById('phone').disabled = true;
+    
+        document.getElementById('editBtn').style.display = 'inline-block';
+        document.getElementById('saveBtn').style.display = 'none';
+    }
+
+    // Function to handle profile picture change
+    /*function changeProfilePic(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profilePic').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }*/
+
+    const user = JSON.parse(sessionStorage.getItem("loggedInUser"));
+    console.log("Loaded user:", user);
+    if (user) {
+        document.getElementById("fullName").value = user.name || "";
+        document.getElementById("email").value = user.email || "";
+        document.getElementById("phone").value = user.phone || "";
+        /*if (user.profilePic) {
+            document.getElementById("profilePic").src = user.profilePic;
+        }*/
+    }
+</script>
