@@ -240,10 +240,10 @@
   });
 
   function addCourse() {
-    const maxId =
-      allCourses.length > 0
-        ? Math.max(...allCourses.map((course) => course.courseID || 0))
-        : 0;
+    // const maxId =
+    //   allCourses.length > 0
+    //     ? Math.max(...allCourses.map((course) => course.courseID || 0))
+    //     : 0;
 
     const newCourse = {
       // courseID: maxId + 1,

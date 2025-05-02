@@ -1,4 +1,4 @@
-const apiUrl = "http://localhost:3000/Users";
+const apiUrl = "http://localhost:8080/users";
 let allUsers = [];
 const form = document.getElementById("userForm");
 const userName = document.getElementById("name");
@@ -158,7 +158,7 @@ function addUser() {
     const nextUserID = allEmail.length
         ? Math.max(...allEmail.map(u => u.userid || u.id)) + 1 : 1;
     const users = {
-        userid: nextUserID,
+        // userid: nextUserID,
         name: userName.value.trim(),
         email: userEmail.value.trim(),
         password: userPass.value.trim(),

@@ -59,3 +59,7 @@ function logout() {
   sessionStorage.setItem("loggedOut", "true");
   window.location.href = "../pages/signIn.html";
 }
+
+function getBasicAuth() {
+  
+}
