@@ -142,11 +142,11 @@
 
   function updateCourse() {
     const updatedCourse = {
-      CourseID: parseInt(editId),
-      Title: courseNameInput.value.trim(),
-      Description: courseDescriptionInput.value.trim(),
-      InstructorID: parseInt(instructorSelect.value),
-      Fees: parseInt(coursePriceInput.value),
+      // courseID: parseInt(editId),
+      title: courseNameInput.value.trim(),
+      description: courseDescriptionInput.value.trim(),
+      instructorID: parseInt(instructorSelect.value),
+      fees: parseInt(coursePriceInput.value),
     };
 
     console.log("Sending PUT payload:", JSON.stringify(updatedCourse));
@@ -246,14 +246,16 @@
         : 0;
 
     const newCourse = {
-      CourseID: maxId + 1,
-      Title: courseNameInput.value.trim(),
-      Description: courseDescriptionInput.value.trim(),
-      InstructorID: instructorSelect.value,
-      Fees: coursePriceInput.value.trim(),
+      // courseID: maxId + 1,
+      title: courseNameInput.value.trim(),
+      description: courseDescriptionInput.value.trim(),
+      instructorID: instructorSelect.value,
+      fees: coursePriceInput.value.trim(),
     };
 
-    fetch(`${api}/Courses`, {
+    console.log("Sending POST payload:", JSON.stringify(newCourse));
+
+    fetch(`${api}/courses`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newCourse),
