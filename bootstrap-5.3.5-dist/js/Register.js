@@ -155,8 +155,8 @@ form.addEventListener("submit", async function (e) {
 });
 function addUser() {
 
-    const nextUserID = allEmail.length
-        ? Math.max(...allEmail.map(u => u.userid || u.id)) + 1 : 1;
+    // const nextUserID = allEmail.length
+    //     ? Math.max(...allEmail.map(u => u.userid || u.id)) + 1 : 1;
     const users = {
         // userid: nextUserID,
         name: userName.value.trim(),

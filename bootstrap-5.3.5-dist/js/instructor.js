@@ -17,7 +17,7 @@ let sortDirection = 1;
 document.querySelector("th:nth-child(1)").style.cursor = "pointer";
 document.querySelector("th:nth-child(1)").addEventListener("click", () => {
     const sorted = [...allInstructors].sort((a, b) =>
-        a.Name.localeCompare(b.Name) * sortDirection
+        a.name.localeCompare(b.name) * sortDirection
     );
     sortDirection *= -1;
     renderInstructors(sorted);
@@ -26,7 +26,7 @@ document.querySelector("th:nth-child(1)").addEventListener("click", () => {
 document.querySelector("th:nth-child(2)").style.cursor = "pointer";
 document.querySelector("th:nth-child(2)").addEventListener("click", () => {
     const sorted = [...allInstructors].sort((a, b) =>
-        a.Expertise.localeCompare(b.Expertise) * sortDirection
+        a.expertise.localeCompare(b.expertise) * sortDirection
     );
     sortDirection *= -1;
     renderInstructors(sorted);
@@ -40,7 +40,7 @@ searchInput.classList.add("form-control", "mb-3");
 document.querySelector(".table").parentNode.insertBefore(searchInput, document.querySelector(".table"));
 searchInput.addEventListener("input", () => {
     const searchTerm = searchInput.value.toLowerCase();
-    const filtered = allInstructors.filter(ins => ins.Name.toLowerCase().includes(searchTerm) || ins.Expertise.toLowerCase().includes(searchTerm));
+    const filtered = allInstructors.filter(ins => ins.name.toLowerCase().includes(searchTerm) || ins.expertise.toLowerCase().includes(searchTerm));
     renderInstructors(filtered);
 });
 
@@ -76,8 +76,8 @@ form.addEventListener("submit", function(e) {
     if(!validateForm()) return;
 
     const instructor = {
-        Name: instructorNameInput.value.trim(),
-        Expertise: instructorExpertise.value.trim()
+        name: instructorNameInput.value.trim(),
+        expertise: instructorExpertise.value.trim()
     };
 
     if(editID) {
@@ -86,7 +86,6 @@ form.addEventListener("submit", function(e) {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(instructor)
         }).then(()=> {
-            e.preventDefault();
             fetchAndRenderInstructors();
             form.reset();
             editID = null;
@@ -94,13 +93,13 @@ form.addEventListener("submit", function(e) {
             clearValidation();
         });
     } else {
-        const nextInstructorID = allInstructors.length
-            ? Math.max(...allInstructors.map(i => i.instructorID || i.id)) + 1
-            : 1;
+        // const nextInstructorID = allInstructors.length
+        //     ? Math.max(...allInstructors.map(i => i.instructorID || i.id)) + 1
+        //     : 1;
     
         const newInstructor = {
             ...instructor,
-            InstructorID: nextInstructorID
+            // InstructorID: nextInstructorID
         };
     
         fetch(apiurl, {

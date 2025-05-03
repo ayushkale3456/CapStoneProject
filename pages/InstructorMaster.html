@@ -1,5 +1,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb" data-bs-theme="light">
+        <li class="breadcrumb-item">
+            <a href="../admin.html" style="text-decoration: none; color: aliceblue;">Admin Panel</a>
+        </li>
+        <li class="breadcrumb-item active text-light">Instructor</li>
+    </ol>
+</nav>
+
 <div class="p-4" style="flex: 1; border: 1px #5C5470 solid;" id="main-content">
     <h2 class="text-light mb-4">Instructor Management</h2>
     <p class="text-secondary">Manage instructor records and expertise areas.</p>
@@ -8,7 +18,7 @@
         <div class="mb-3">
             <label for="name" class="form-label text-light">Name:</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Instructor Name">
-            <div class="invalid-feedback">At least 5 characters</div>
+            <div class="invalid-feedback">At least 4 characters</div>
         </div>
         <div class="mb-3">
             <label for="expertise" class="form-label text-light">Expertise:</label>

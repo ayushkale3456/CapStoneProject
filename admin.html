@@ -197,20 +197,6 @@
             });
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            fetch('example.json')
-                .then(res => res.json())
-                .then(data => {
-                    document.getElementById('totalUsers').textContent = data.Users.length;
-                    document.getElementById('totalCourses').textContent = data.Courses.length;
-                    document.getElementById('totalInstructors').textContent = data.Instructors.length;
-                    document.getElementById('totalEnrollments').textContent = data.Enrollments.length;
-                })
-                .catch(err => {
-                    console.error('Error loading dashboard stats:', err);
-                });
-        });
-
         document.addEventListener("DOMContentLoaded", function () {
             const userType = sessionStorage.getItem("userType");
             const userName = sessionStorage.getItem("userName");
@@ -226,21 +212,24 @@
             }
 
 
-            fetch('example.json')
-                .then(res => res.json())
-                .then(data => {
-                    document.getElementById("adminName").textContent = userName || "Admin";
-                    document.getElementById('totalUsers').textContent = data.Users.length;
-                    document.getElementById('totalCourses').textContent = data.Courses.length;
-                    document.getElementById('totalInstructors').textContent = data.Instructors.length;
-                    document.getElementById('totalEnrollments').textContent = data.Enrollments.length;
+            const api = 'http://localhost:8080';
+
+            Promise.all([
+                fetch(`${api}/users`).then(res => res.json()),
+                fetch(`${api}/courses`).then(res => res.json()),
+                fetch(`${api}/instructors`).then(res => res.json()),
+                fetch(`${api}/enrollments`).then(res => res.json())
+            ])
+                .then(([users, courses, instructors, enrollments]) => {
+                    document.getElementById("adminName").textContent = userName;
+                    document.getElementById('totalUsers').textContent = users.length;
+                    document.getElementById('totalCourses').textContent = courses.length;
+                    document.getElementById('totalInstructors').textContent = instructors.length;
+                    document.getElementById('totalEnrollments').textContent = enrollments.length;
                 })
                 .catch(err => {
                     console.error('Error loading dashboard stats:', err);
                 });
-
-            
-
         });
         function logout() {
             sessionStorage.clear();

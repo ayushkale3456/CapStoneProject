@@ -41,23 +41,23 @@
   }
 
   //sorting
-document.querySelector("th:nth-child(1)").style.cursor = "pointer";
-document.querySelector("th:nth-child(1)").addEventListener("click", () => {
-    const sorted = [...allStudents].sort((a, b) =>
-        a.name.localeCompare(b.name) * sortDirection
+  document.querySelector("th:nth-child(1)").style.cursor = "pointer";
+  document.querySelector("th:nth-child(1)").addEventListener("click", () => {
+    const sorted = [...allStudents].sort(
+      (a, b) => a.name.localeCompare(b.name) * sortDirection
     );
     sortDirection *= -1;
     renderStudents(sorted);
-});
+  });
 
-document.querySelector("th:nth-child(2)").style.cursor = "pointer";
-document.querySelector("th:nth-child(2)").addEventListener("click", () => {
-    const sorted = [...allStudents].sort((a, b) =>
-        a.email.localeCompare(b.email) * sortDirection
+  document.querySelector("th:nth-child(2)").style.cursor = "pointer";
+  document.querySelector("th:nth-child(2)").addEventListener("click", () => {
+    const sorted = [...allStudents].sort(
+      (a, b) => a.email.localeCompare(b.email) * sortDirection
     );
     sortDirection *= -1;
     renderStudents(sorted);
-});
+  });
 
   function renderStudents(students) {
     tableBody.innerHTML = "";
@@ -77,7 +77,7 @@ document.querySelector("th:nth-child(2)").addEventListener("click", () => {
 
   // Edit
   window.editStudent = async function (id) {
-    const res = await fetch(`http://localhost:3000/Users/${id}`);
+    const res = await fetch(`${apiUrl}/${id}`);
     const student = await res.json();
 
     document.getElementById("editStudentSection").style.display = "block";
@@ -97,18 +97,20 @@ document.querySelector("th:nth-child(2)").addEventListener("click", () => {
         name: document.getElementById("editName").value.trim(),
         email: document.getElementById("editEmail").value.trim(),
         phone: document.getElementById("editPhone").value.trim(),
-        usertype: "student",
+        // usertype: "student",
       };
 
-      await fetch(`http://localhost:3000/Users/${id}`, {
+      await fetch(`${apiUrl}/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedStudent),
       });
 
+      console.log("Sending PUT data:", updatedStudent);
+
+      fetchStudents();
       document.getElementById("editStudentForm").reset();
       document.getElementById("editStudentSection").style.display = "none";
-      fetchStudents();
     });
 
   // Delete

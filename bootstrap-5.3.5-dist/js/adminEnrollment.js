@@ -102,7 +102,7 @@
 
   function deleteEnrollment(id) {
     if (confirm("Are you sure you want to delete this enrollment?")) {
-      fetch(`${api}/Enrollments/${id}`, { method: "DELETE" }).then(() =>
+      fetch(`${api}/enrollments/${id}`, { method: "DELETE" }).then(() =>
         loadData()
       );
     }
@@ -129,24 +129,24 @@
     return isValid;
   }
 
-  function getNextId() {
-    return enrollments.length
-      ? Math.max(...enrollments.map((e) => e.enrollmentID)) + 1
-      : 1;
-  }
+  // function getNextId() {
+  //   return enrollments.length
+  //     ? Math.max(...enrollments.map((e) => e.enrollmentID)) + 1
+  //     : 1;
+  // }
 
   function submitForm(e) {
     e.preventDefault();
     if (!validateForm()) return;
 
     const enrollmentData = {
-      UserID: parseInt(studentSelect.value),
-      CourseID: parseInt(courseSelect.value),
-      EnrollmentDate: enrollmentDateInput.value,
+      userID: parseInt(studentSelect.value),
+      courseID: parseInt(courseSelect.value),
+      enrollmentDate: enrollmentDateInput.value,
     };
 
     if (editId) {
-      fetch(`${api}/Enrollments/${editId}`, {
+      fetch(`${api}/enrollments/${editId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -159,10 +159,10 @@
         loadData();
       });
     } else {
-      fetch(`${api}/Enrollments`, {
+      fetch(`${api}/enrollments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...enrollmentData, EnrollmentID: getNextId() }),
+        body: JSON.stringify({ ...enrollmentData }),
       }).then(() => {
         resetForm();
         loadData();
