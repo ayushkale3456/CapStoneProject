@@ -36,6 +36,16 @@
     renderEnrollments(enrollments);
   }
 
+  function showErrorPopup(messages) {
+    const popup = document.getElementById("errorPopup");
+    popup.innerHTML = messages.map((msg) => `<div>${msg}</div>`).join("");
+    popup.classList.remove("d-none");
+
+    setTimeout(() => {
+      popup.classList.add("d-none");
+    }, 5000);
+  }
+
   function populateDropdowns() {
     studentSelect.innerHTML = '<option value="">--Select Student--</option>';
     courseSelect.innerHTML = '<option value="">--Select Course--</option>';
@@ -108,36 +118,8 @@
     }
   }
 
-  function validateForm() {
-    let isValid = true;
-
-    if (!studentSelect.value) {
-      studentSelect.classList.add("is-invalid");
-      isValid = false;
-    } else studentSelect.classList.remove("is-invalid");
-
-    if (!courseSelect.value) {
-      courseSelect.classList.add("is-invalid");
-      isValid = false;
-    } else courseSelect.classList.remove("is-invalid");
-
-    if (!enrollmentDateInput.value) {
-      enrollmentDateInput.classList.add("is-invalid");
-      isValid = false;
-    } else enrollmentDateInput.classList.remove("is-invalid");
-
-    return isValid;
-  }
-
-  // function getNextId() {
-  //   return enrollments.length
-  //     ? Math.max(...enrollments.map((e) => e.enrollmentID)) + 1
-  //     : 1;
-  // }
-
   function submitForm(e) {
     e.preventDefault();
-    if (!validateForm()) return;
 
     const enrollmentData = {
       userID: parseInt(studentSelect.value),
@@ -154,18 +136,28 @@
           EnrollmentID: parseInt(editId),
           id: parseInt(editId),
         }),
-      }).then(() => {
-        resetForm();
-        loadData();
+      }).then(async (response) => {
+        if (!response.ok) {
+          const errorData = await response.json();
+          showErrorPopup(errorData);
+        } else {
+          resetForm();
+          loadData();
+        }
       });
     } else {
       fetch(`${api}/enrollments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...enrollmentData }),
-      }).then(() => {
-        resetForm();
-        loadData();
+      }).then(async (response) => {
+        if (!response.ok) {
+          const errorData = await response.json();
+          showErrorPopup(errorData);
+        } else {
+          resetForm();
+          loadData();
+        }
       });
     }
   }
@@ -174,9 +166,6 @@
     enrollmentForm.reset();
     submitBtn.textContent = "Add Enrollment";
     editId = null;
-    studentSelect.classList.remove("is-invalid");
-    courseSelect.classList.remove("is-invalid");
-    enrollmentDateInput.classList.remove("is-invalid");
   }
 
   function searchEnrollments() {
@@ -192,7 +181,7 @@
     renderEnrollments(filtered);
   }
 
-  function sortByColumn(key, getValue) {
+  function sortByColumn(_, getValue) {
     const sorted = [...enrollments].sort((a, b) => {
       const aVal = getValue(a).toLowerCase();
       const bVal = getValue(b).toLowerCase();

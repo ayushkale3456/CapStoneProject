@@ -157,7 +157,7 @@
       body: JSON.stringify({ ...updatedCourse }),
     }).then(() => {
       courseForm.reset();
-      clearValidation();
+      // clearValidation();
       submitBtn.textContent = "Add Course";
       editId = null;
       fetchAndRenderCourses();
@@ -172,50 +172,6 @@
     }
   }
 
-  function validateCourseName() {
-    let isValid = true;
-    if (courseNameInput.value.trim().length < 5) {
-      courseNameInput.classList.add("is-invalid");
-      isValid = false;
-    } else {
-      courseNameInput.classList.remove("is-invalid");
-    }
-    return isValid;
-  }
-
-  function validateCourseDesc() {
-    let isValid = true;
-    if (courseDescriptionInput.value.trim().length < 10) {
-      courseDescriptionInput.classList.add("is-invalid");
-      isValid = false;
-    } else {
-      courseDescriptionInput.classList.remove("is-invalid");
-    }
-    return isValid;
-  }
-
-  function validateInstructor() {
-    let isValid = true;
-    if (!instructorSelect.value) {
-      instructorSelect.classList.add("is-invalid");
-      isValid = false;
-    } else {
-      instructorSelect.classList.remove("is-invalid");
-    }
-    return isValid;
-  }
-
-  function validateFees() {
-    let isValid = true;
-    if (!coursePriceInput.value || parseInt(coursePriceInput.value) <= 0) {
-      coursePriceInput.classList.add("is-invalid");
-      isValid = false;
-    } else {
-      coursePriceInput.classList.remove("is-invalid");
-    }
-    return isValid;
-  }
-
   courseForm.addEventListener("submit", function (e) {
     e.preventDefault();
     const exists = allCourses.find(
@@ -224,27 +180,15 @@
     if (exists) {
       alert("Course already exists");
     } else {
-      if (
-        validateCourseName() &&
-        validateCourseDesc() &&
-        validateInstructor() &&
-        validateFees()
-      ) {
-        if (editId) {
-          updateCourse();
-        } else {
-          addCourse();
-        }
+      if (editId) {
+        updateCourse();
+      } else {
+        addCourse();
       }
     }
   });
 
   function addCourse() {
-    // const maxId =
-    //   allCourses.length > 0
-    //     ? Math.max(...allCourses.map((course) => course.courseID || 0))
-    //     : 0;
-
     const newCourse = {
       // courseID: maxId + 1,
       title: courseNameInput.value.trim(),
@@ -261,16 +205,9 @@
       body: JSON.stringify(newCourse),
     }).then(() => {
       courseForm.reset();
-      clearValidation();
+      // clearValidation();
       fetchAndRenderCourses();
     });
-  }
-
-  function clearValidation() {
-    courseNameInput.classList.remove("is-invalid");
-    courseDescriptionInput.classList.remove("is-invalid");
-    instructorSelect.classList.remove("is-invalid");
-    coursePriceInput.classList.remove("is-invalid");
   }
 
   fetchAndRenderCourses();

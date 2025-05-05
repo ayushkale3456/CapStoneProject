@@ -28,16 +28,22 @@
     renderStudents(filtered);
   });
 
+  function showErrorPopup(messages) {
+    const popup = document.getElementById("errorPopup");
+    popup.innerHTML = messages.map((msg) => `<div>${msg}</div>`).join("");
+    popup.classList.remove("d-none");
+
+    setTimeout(() => {
+      popup.classList.add("d-none");
+    }, 5000);
+  }
+
   // Fetch and render only students
   async function fetchStudents() {
-    try {
-      const res = await fetch(apiUrl);
-      const data = await res.json();
-      allStudents = data.filter((user) => user.usertype === "student");
-      renderStudents(allStudents);
-    } catch (err) {
-      console.error("Error fetching students:", err);
-    }
+    const res = await fetch(apiUrl);
+    const data = await res.json();
+    allStudents = data.filter((user) => user.usertype === "student");
+    renderStudents(allStudents);
   }
 
   //sorting
@@ -67,6 +73,7 @@
       tr.innerHTML = `<td>${student.name}</td>
           <td>${student.email}</td>
           <td>${student.phone}</td>
+          <td>${student.password}</td>
           <td>
               <button class="btn btn-sm btn-outline-primary me-1 edit-btn" onclick="editStudent('${student.userid}')"><i class="fa fa-edit"></i></button>
               <button class="btn btn-sm btn-outline-danger delete-btn" onclick="deleteStudent('${student.userid}')"><i class="fa fa-trash"></i></button>
@@ -85,6 +92,7 @@
     document.getElementById("editName").value = student.name;
     document.getElementById("editEmail").value = student.email;
     document.getElementById("editPhone").value = student.phone;
+    document.getElementById("editPassword").value = student.password;
   };
 
   document
@@ -97,20 +105,27 @@
         name: document.getElementById("editName").value.trim(),
         email: document.getElementById("editEmail").value.trim(),
         phone: document.getElementById("editPhone").value.trim(),
-        // usertype: "student",
+        password: document.getElementById("editPassword").value.trim(),
+        usertype: "student",
       };
 
       await fetch(`${apiUrl}/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedStudent),
+      }).then(async (res) => {
+        if (!res.ok) {
+          console.log("Sending PUT data:", updatedStudent);
+          const errorData = await res.json();
+          showErrorPopup(errorData);
+        } else {
+          console.log("Sending PUT data:", updatedStudent);
+
+          fetchStudents();
+          document.getElementById("editStudentForm").reset();
+          document.getElementById("editStudentSection").style.display = "none";
+        }
       });
-
-      console.log("Sending PUT data:", updatedStudent);
-
-      fetchStudents();
-      document.getElementById("editStudentForm").reset();
-      document.getElementById("editStudentSection").style.display = "none";
     });
 
   // Delete

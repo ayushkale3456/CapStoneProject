@@ -6,11 +6,6 @@
     const enrollmentCountEl = document.getElementById("enrollment-count");
     const recentTableBody = document.getElementById("recentEnrollmentBody");
   
-    // const usersURL = "http://localhost:3000/users";
-    // const instructorsURL = "http://localhost:3000/Instructors";
-    // const coursesURL = "http://localhost:3000/Courses";
-    // const enrollmentsURL = "http://localhost:3000/Enrollments";
-  
     try {
       const [usersRes, instructorsRes, coursesRes, enrollmentsRes] = await Promise.all([
         fetch(`${api}/users`),
@@ -39,7 +34,7 @@
   
       // Recent Enrollments (latest 5)
       const recentEnrollments = enrollments
-        .sort((a, b) => new Date(b.EnrollmentDate) - new Date(a.EnrollmentDate))
+        .sort((a, b) => new Date(b.enrollmentDate) - new Date(a.enrollmentDate))
         .slice(0, 5);
   
       recentTableBody.innerHTML = "";
