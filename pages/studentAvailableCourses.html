@@ -1,3 +1,103 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb" data-bs-theme="light">
+        <li class="breadcrumb-item">
+            <a href="../student.html" style="text-decoration: none; color: aliceblue;">Student Panel</a>
+        </li>
+        <li class="breadcrumb-item active text-light">Available Courses</li>
+    </ol>
+</nav>
+
 <h2 class="mb-4 text-white">Available Courses</h2>
 <div class="row row-cols-1 row-cols-md-3 g-4" id="available-courses-container"></div>
-<script src="../bootstrap-5.3.5-dist/js/studentAvailableCourses.js"></script>
+<script>
+    (() => {
+        const api = "http://localhost:8080";
+        const userId = sessionStorage.getItem("userId");
+        const userType = sessionStorage.getItem("userType");
+
+        // Save intended location
+        sessionStorage.setItem("lastPageVisited", "studentAvailableCourses");
+
+        if (!userId || userType !== "student") {
+            window.location.href = "../pages/signIn.html";
+            return;
+        }
+
+        loadAvailableCourses(userId);
+
+        async function loadAvailableCourses(userId) {
+            try {
+                const response = await fetch(`${api}/courses/available/${userId}`);
+                const courses = await response.json();
+
+                const container = document.getElementById("available-courses-container");
+                container.innerHTML = "";
+
+                if (courses.length === 0) {
+                    container.innerHTML = `<div class="col"><p class="text-white">No courses available.</p></div>`;
+                    return;
+                }
+
+                courses.forEach((course) => {
+                    //const instructor = instructors.find(
+                    // (i) => i.instructorID == course.instructorID
+                    //);
+                    //const isEnrolled = enrolledCourseIds.includes(course.courseID);
+
+                    const card = document.createElement("div");
+                    card.className = "col";
+
+                    card.innerHTML = `
+                <div class="card h-100 bg-dark text-white">
+                  <div class="card-body">
+                    <h5 class="card-title">${course.title}</h5>
+                    <p class="card-text">${course.description}</p>
+                    <p class="card-text"><strong>Instructor:</strong> ${course.instructorName || "Unknown"
+                        }</p>
+                    <p class="card-text"><strong>Fees:</strong> ₹${course.fees}</p>
+                    <button class="btn btn-${course.enrolled ? "secondary" : "success"} w-100 enroll-btn" 
+                      data-courseid="${course.courseID}" ${course.enrolled ? "disabled" : ""}>
+                      ${course.enrolled ? "Enrolled" : "Enroll"}
+                    </button>
+                  </div>
+                </div>
+              `;
+
+                    container.appendChild(card);
+                });
+
+                document.querySelectorAll(".enroll-btn").forEach((btn) => {
+                    btn.addEventListener("click", async (e) => {
+                        e.preventDefault();
+                        const courseId = btn.getAttribute("data-courseid");
+                        await enrollInCourse(userId, courseId);
+                    });
+                });
+            } catch (error) {
+                console.error("Error loading available courses:", error);
+            }
+        }
+
+        async function enrollInCourse(userId, courseId) {
+            try {
+                const enrollmentDate = new Date().toISOString().split("T")[0];
+
+                const newEnrollment = {
+                    userID: parseInt(userId),
+                    courseID: parseInt(courseId),
+                    enrollmentDate: enrollmentDate,
+                };
+
+                await fetch(`${api}/enrollments`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(newEnrollment),
+                });
+                loadAvailableCourses(userId);
+            } catch (error) {
+                console.error("Error during enrollment:", error);
+            }
+        }
+    })();
+
+</script>
